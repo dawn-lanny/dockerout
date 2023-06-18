@@ -9,12 +9,10 @@ USER root
 RUN cat /etc/os-release
 RUN dpkg --print-architecture
 # step 1: 安装必要的一些系统工具
-RUN apt-get remove docker docker-engine docker.io
-RUN apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common
-# step 2: 安装GPG证书
-RUN curl -fsSL https://repo.huaweicloud.com/docker-ce/linux/debian/gpg && apt-key add -
-# Step 3: 写入软件源信息
-RUN add-apt-repository "deb [arch=amd64] https://repo.huaweicloud.com/docker-ce/linux/debian $(lsb_release -cs) stable"
+RUN apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common && \
+    curl -fsSL https://repo.huaweicloud.com/docker-ce/linux/debian/gpg && \
+    apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://repo.huaweicloud.com/docker-ce/linux/debian $(lsb_release -cs) stable"
 RUN apt-get update && \
     apt-get install -y curl unzip docker-ce docker-ce-cli && \
     apt-get clean
