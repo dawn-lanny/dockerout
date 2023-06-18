@@ -6,13 +6,14 @@ ENV MVN_VERSION=3.3.9
 
 # tool
 USER root
+RUN cat /etc/os-release
 # step 1: 安装必要的一些系统工具
 RUN  apt-get update
 RUN  apt-get -y install apt-transport-https ca-certificates curl software-properties-common
 # step 2: 安装GPG证书
-RUN curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/debian/gpg | apt-key add -
+RUN curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | apt-key add -
 # Step 3: 写入软件源信息
-RUN  add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/debian $(lsb_release -cs) stable"
+RUN  add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
 RUN apt-get update && \
     apt-get install -y curl unzip docker-ce docker-ce-cli && \
     apt-get clean
