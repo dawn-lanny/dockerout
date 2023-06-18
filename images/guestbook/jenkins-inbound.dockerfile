@@ -8,8 +8,9 @@ ENV MVN_VERSION=3.3.9
 USER root
 RUN cat /etc/os-release
 RUN dpkg --print-architecture
+RUN apt-get -y install libseccomp2
 # step 1: 安装必要的一些系统工具
-RUN apt-get -y install libseccomp2 apt-transport-https ca-certificates curl gnupg2 software-properties-common && \
+RUN apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common && \
     curl -fsSL https://repo.huaweicloud.com/docker-ce/linux/debian/gpg && \
     apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://repo.huaweicloud.com/docker-ce/linux/debian $(lsb_release -cs) stable"
