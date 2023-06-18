@@ -9,9 +9,10 @@ USER root
 RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak
 RUN sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list && \
     sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
-RUN apt-get install apt-transport-https ca-certificates wget && \
+RUN apt-get install apt-transport-https ca-certificates && \
     apt-get update
-RUN apt-get -y install libseccomp2
+RUN apt-get -y install libseccomp2 
+RUN apt install wget
 # step 1: 安装必要的一些系统工具
 RUN apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common
 RUN curl -fsSL https://repo.huaweicloud.com/docker-ce/linux/debian/gpg | apt-key add - && \
