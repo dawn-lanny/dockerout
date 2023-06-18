@@ -30,13 +30,14 @@ RUN curl -skL -o /tmp/gradle-bin.zip https://services.gradle.org/distributions/g
 RUN chown -R 1001:0 /opt/gradle && \
     chmod -R g+rw /opt/gradle
 # maven
-#RUN wget https://dlcdn.apache.org/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
-RUN wget https://archive.apache.org/dist/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
-RUN tar xzvf apache-maven-$MVN_VERSION-bin.tar.gz
-RUN cp -R apache-maven-$MVN_VERSION /usr/local/bin
-RUN export PATH=apache-maven-$MVN_VERSION/bin:$PATH
-RUN export PATH=/usr/local/bin/apache-maven-$MVN_VERSION/bin:$PATH
-RUN ln -s /usr/local/bin/apache-maven-$MVN_VERSION/bin/mvn /usr/local/bin/mvn
+#RUN curl -skL -o https://dlcdn.apache.org/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
+RUN curl -k -o /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.zip && \
+    mkdir -p /opt/maven && \
+    unzip -q apache-maven.zip -d /opt/maven && \
+    cp -R /opt/maven/apache-maven-$MVN_VERSION /usr/local/bin && \
+    export PATH=/opt/maven/apache-maven-$MVN_VERSION/bin:$PATH && \
+    export PATH=/usr/local/bin/apache-maven-$MVN_VERSION/bin:$PATH && \
+    ln -s /usr/local/bin/apache-maven-$MVN_VERSION/bin/mvn /usr/local/bin/mvn
 
 # kubectl
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
