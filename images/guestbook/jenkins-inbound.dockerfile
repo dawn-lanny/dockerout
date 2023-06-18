@@ -29,7 +29,8 @@ RUN curl -skL -o /tmp/gradle-bin.zip https://services.gradle.org/distributions/g
 RUN chown -R 1001:0 /opt/gradle && \
     chmod -R g+rw /opt/gradle
 # maven
-RUN wget https://dlcdn.apache.org/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
+#RUN wget https://dlcdn.apache.org/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
+RUN wget https://archive.apache.org/dist/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
 RUN tar xzvf apache-maven-$MVN_VERSION-bin.tar.gz
 RUN cp -R apache-maven-$MVN_VERSION /usr/local/bin
 RUN export PATH=apache-maven-$MVN_VERSION/bin:$PATH
