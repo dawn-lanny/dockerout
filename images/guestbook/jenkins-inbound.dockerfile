@@ -1,4 +1,4 @@
-FROM jenkins/inbound-agent:latest-jdk8
+FROM registry.cn-hangzhou.aliyuncs.com/kubernetes-deploy/jenkins-inbound:latest-jdk8
 
 ENV GRADLE_VERSION=7.2
 ENV K8S_VERSION=v1.22.3
@@ -6,13 +6,15 @@ ENV MVN_VERSION=3.3.9
 
 # tool
 USER root
-RUN cat /etc/os-release
-RUN dpkg --print-architecture
+RUN cp -a /etc/apt/sources.list /etc/apt/sources.list.bak
+RUN sed -i "s@http://ftp.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list && \
+    sed -i "s@http://security.debian.org@https://repo.huaweicloud.com@g" /etc/apt/sources.list
+RUN apt-get install apt-transport-https ca-certificates && \
+    apt-get update
 RUN apt-get -y install libseccomp2
 # step 1: 安装必要的一些系统工具
-RUN apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common && \
-    curl -fsSL https://repo.huaweicloud.com/docker-ce/linux/debian/gpg && \
-    apt-key add - && \
+RUN apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common
+RUN curl -fsSL https://repo.huaweicloud.com/docker-ce/linux/debian/gpg | apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://repo.huaweicloud.com/docker-ce/linux/debian $(lsb_release -cs) stable"
 RUN apt-get update && \
     apt-get install -y curl unzip docker-ce docker-ce-cli && \
