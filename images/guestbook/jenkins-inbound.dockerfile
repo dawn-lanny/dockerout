@@ -31,7 +31,7 @@ RUN chown -R 1001:0 /opt/gradle && \
     chmod -R g+rw /opt/gradle
 # maven
 #RUN curl -skL -o https://dlcdn.apache.org/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
-RUN curl -k -o /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.zip && \
+RUN curl -k -o /tmp/apache-maven.zip https://archive.apache.org/dist/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.zip && \
     mkdir -p /opt/maven && \
     unzip -q apache-maven.zip -d /opt/maven && \
     cp -R /opt/maven/apache-maven-$MVN_VERSION /usr/local/bin && \
