@@ -2,7 +2,7 @@ FROM registry.cn-hangzhou.aliyuncs.com/kubernetes-deploy/jenkins-inbound:latest-
 
 ENV GRADLE_VERSION=7.2
 ENV K8S_VERSION=v1.22.3
-ENV MVN_VERSION=$MVN_VERSION
+ENV MVN_VERSION=3.3.9
 
 # tool
 USER root
