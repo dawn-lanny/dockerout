@@ -33,7 +33,7 @@ RUN chown -R 1001:0 /opt/gradle && \
 #RUN curl -skL -o https://dlcdn.apache.org/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
 RUN curl -k -o /tmp/apache-maven.zip https://archive.apache.org/dist/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.zip && \
     mkdir -p /opt/maven && \
-    unzip -q apache-maven.zip -d /opt/maven && \
+    unzip -q /tmp/apache-maven.zip -d /opt/maven && \
     cp -R /opt/maven/apache-maven-$MVN_VERSION /usr/local/bin && \
     export PATH=/opt/maven/apache-maven-$MVN_VERSION/bin:$PATH && \
     export PATH=/usr/local/bin/apache-maven-$MVN_VERSION/bin:$PATH && \
