@@ -9,7 +9,7 @@ USER root
 RUN cat /etc/os-release
 RUN dpkg --print-architecture
 # step 1: 安装必要的一些系统工具
-RUN apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common && \
+RUN apt-get -y install libseccomp2 apt-transport-https ca-certificates curl gnupg2 software-properties-common && \
     curl -fsSL https://repo.huaweicloud.com/docker-ce/linux/debian/gpg && \
     apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://repo.huaweicloud.com/docker-ce/linux/debian $(lsb_release -cs) stable"
