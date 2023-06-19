@@ -43,7 +43,7 @@ RUN curl -k -o /tmp/apache-maven.zip https://archive.apache.org/dist/maven/maven
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
 RUN chmod +x ./kubectl
 RUN mv ./kubectl /usr/local/bin
-RUN mkdir -p /root/kaniko-workspace &&
+RUN mkdir -p /root/kaniko-workspace && \
     mkdir -p /root/.m2/repository/
 
 USER jenkins
