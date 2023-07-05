@@ -45,7 +45,7 @@ RUN chmod +x ./kubectl
 RUN mkdir -p /usr/local/kubernetes/client/bin
 RUN mv ./kubectl /usr/local/kubernetes/client/bin
 RUN ls /usr/local/kubernetes/client/bin
-RUN mkdir -p /home/kaniko-workspace && \
-    mkdir -p /home/.m2/repository/
+RUN mkdir -p /root/kaniko-workspace && \
+    mkdir -p /root/.m2/repository/
 
 USER root
