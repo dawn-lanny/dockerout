@@ -46,6 +46,8 @@ RUN mkdir -p /usr/local/kubernetes/client/bin
 RUN mv ./kubectl /usr/local/kubernetes/client/bin
 RUN ls /usr/local/kubernetes/client/bin
 RUN mkdir -p /root/kaniko-workspace && \
-    mkdir -p /root/.m2/repository/
+    mkdir -p /root/.m2/repository/ && \
+    mkdir -p root/.kubebuild && \
+    mkdir -p /root/.kubedeploy 
 
 USER root
