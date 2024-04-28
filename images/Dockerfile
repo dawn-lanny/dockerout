@@ -1,2 +1,2 @@
-FROM jenkins/inbound-agent:3107.v665000b_51092-15
+FROM k8s.gcr.io/dns/k8s-dns-node-cache:1.21.1
 
