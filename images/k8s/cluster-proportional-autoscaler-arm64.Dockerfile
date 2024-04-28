@@ -1,0 +1,1 @@
+FROM k8s.gcr.io/cpa/cluster-proportional-autoscaler-arm64:1.8.5
